@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Premium Banking Dashboard — Manage savings and current accounts with deposits, withdrawals, transfers, and transaction history.">
+    <title>VaultX — Premium Banking Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- ── Ambient Background Orbs ──────────────────────────────────────── -->
+    <div class="bg-orb bg-orb-1"></div>
+    <div class="bg-orb bg-orb-2"></div>
+    <div class="bg-orb bg-orb-3"></div>
+
+    <!-- ── Sidebar ──────────────────────────────────────────────────────── -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-brand">
+            <div class="brand-icon">
+                <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+                    <rect x="2" y="6" width="24" height="16" rx="3" stroke="currentColor" stroke-width="2"/>
+                    <path d="M2 11H26" stroke="currentColor" stroke-width="2"/>
+                    <circle cx="7" cy="17" r="2" fill="currentColor"/>
+                </svg>
+            </div>
+            <span class="brand-text">Vault<span class="brand-accent">X</span></span>
+        </div>
+
+        <nav class="sidebar-nav">
+            <a href="#" class="nav-item active" data-view="dashboard" id="nav-dashboard">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="2" width="7" height="7" rx="2" stroke="currentColor" stroke-width="1.5"/><rect x="11" y="2" width="7" height="7" rx="2" stroke="currentColor" stroke-width="1.5"/><rect x="2" y="11" width="7" height="7" rx="2" stroke="currentColor" stroke-width="1.5"/><rect x="11" y="11" width="7" height="7" rx="2" stroke="currentColor" stroke-width="1.5"/></svg>
+                <span>Dashboard</span>
+            </a>
+            <a href="#" class="nav-item" data-view="accounts" id="nav-accounts">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2" y="4" width="16" height="12" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M2 8H18" stroke="currentColor" stroke-width="1.5"/><rect x="4" y="11" width="4" height="2" rx="0.5" fill="currentColor"/></svg>
+                <span>Accounts</span>
+            </a>
+            <a href="#" class="nav-item" data-view="transactions" id="nav-transactions">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 7H16M4 10H12M4 13H14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                <span>Transactions</span>
+            </a>
+            <a href="#" class="nav-item" data-view="transfer" id="nav-transfer">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 8L16 8M16 8L13 5M16 8L13 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M16 14L4 14M4 14L7 11M4 14L7 17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <span>Transfer</span>
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="theme-toggle" id="theme-toggle">
+                <svg class="icon-sun" width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M9 1V3M9 15V17M1 9H3M15 9H17M3.5 3.5L5 5M13 13L14.5 14.5M14.5 3.5L13 5M5 13L3.5 14.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                <svg class="icon-moon" width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M15.5 10.5C14.4 12.4 12.3 13.7 9.9 13.7C6.3 13.7 3.3 10.7 3.3 7.1C3.3 4.7 4.6 2.6 6.5 1.5C3.5 2.3 1.3 5 1.3 8.2C1.3 12.1 4.4 15.2 8.3 15.2C11.5 15.2 14.2 13 15.5 10.5Z" fill="currentColor"/></svg>
+            </div>
+        </div>
+    </aside>
+
+    <!-- ── Main Content ─────────────────────────────────────────────────── -->
+    <main class="main-content" id="main-content">
+
+        <!-- Header -->
+        <header class="top-header">
+            <div class="header-left">
+                <button class="mobile-menu-btn" id="mobile-menu-btn">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M3 7H21M3 12H21M3 17H21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+                </button>
+                <div>
+                    <h1 class="page-title" id="page-title">Dashboard</h1>
+                    <p class="page-subtitle" id="page-subtitle">Overview of your banking activity</p>
+                </div>
+            </div>
+            <div class="header-right">
+                <div class="notification-bell" id="notification-bell">
+                    <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M8.5 19C8.5 20.4 9.6 21.5 11 21.5C12.4 21.5 13.5 20.4 13.5 19" stroke="currentColor" stroke-width="1.5"/><path d="M4 15.5H18C18 15.5 17 13.5 17 9.5C17 6.2 14.3 3.5 11 3.5C7.7 3.5 5 6.2 5 9.5C5 13.5 4 15.5 4 15.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><circle cx="16" cy="5" r="3" fill="var(--accent)"/></svg>
+                </div>
+                <div class="user-avatar" id="user-avatar">SK</div>
+            </div>
+        </header>
+
+        <!-- ── VIEW: Dashboard ──────────────────────────────────────────── -->
+        <section class="view active" id="view-dashboard">
+
+            <!-- Stats Cards -->
+            <div class="stats-grid">
+                <div class="stat-card stat-total">
+                    <div class="stat-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="2" y="6" width="20" height="13" rx="3" stroke="currentColor" stroke-width="1.8"/><path d="M2 10H22" stroke="currentColor" stroke-width="1.8"/><circle cx="7" cy="15" r="1.5" fill="currentColor"/></svg>
+                    </div>
+                    <div class="stat-content">
+                        <span class="stat-label">Total Balance</span>
+                        <span class="stat-value" id="stat-total-balance">₹0.00</span>
+                    </div>
+                    <div class="stat-trend up">
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 11V3M7 3L3 7M7 3L11 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        <span id="stat-trend-pct">—</span>
+                    </div>
+                </div>
+                <div class="stat-card stat-savings">
+                    <div class="stat-icon savings-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M19 9C19 5.1 15.9 2 12 2C8.1 2 5 5.1 5 9V17C5 19.2 6.8 21 9 21H15C17.2 21 19 19.2 19 17V9Z" stroke="currentColor" stroke-width="1.8"/><path d="M9 13H15M12 10V16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+                    </div>
+                    <div class="stat-content">
+                        <span class="stat-label">Savings Accounts</span>
+                        <span class="stat-value" id="stat-savings-count">0</span>
+                    </div>
+                </div>
+                <div class="stat-card stat-current">
+                    <div class="stat-icon current-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M3 9H21" stroke="currentColor" stroke-width="1.8"/><path d="M7 14H10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+                    </div>
+                    <div class="stat-content">
+                        <span class="stat-label">Current Accounts</span>
+                        <span class="stat-value" id="stat-current-count">0</span>
+                    </div>
+                </div>
+                <div class="stat-card stat-txns">
+                    <div class="stat-icon txns-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M4 7H20M4 12H16M4 17H18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+                    </div>
+                    <div class="stat-content">
+                        <span class="stat-label">Total Transactions</span>
+                        <span class="stat-value" id="stat-txn-count">0</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Actions + Recent Transactions -->
+            <div class="dashboard-grid">
+                <div class="card quick-actions-card">
+                    <h2 class="card-title">Quick Actions</h2>
+                    <div class="quick-actions">
+                        <button class="action-btn action-deposit" id="quick-deposit">
+                            <div class="action-icon">
+                                <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="11" cy="11" r="9" stroke="currentColor" stroke-width="1.5"/><path d="M11 7V15M7 11H15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                            </div>
+                            <span>Deposit</span>
+                        </button>
+                        <button class="action-btn action-withdraw" id="quick-withdraw">
+                            <div class="action-icon">
+                                <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="11" cy="11" r="9" stroke="currentColor" stroke-width="1.5"/><path d="M7 11H15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                            </div>
+                            <span>Withdraw</span>
+                        </button>
+                        <button class="action-btn action-transfer" id="quick-transfer">
+                            <div class="action-icon">
+                                <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M4 8L18 8M18 8L14 4M18 8L14 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M18 15L4 15M4 15L8 11M4 15L8 19" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            </div>
+                            <span>Transfer</span>
+                        </button>
+                        <button class="action-btn action-new" id="quick-new-account">
+                            <div class="action-icon">
+                                <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><rect x="3" y="5" width="16" height="12" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M11 9V13M9 11H13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                            </div>
+                            <span>New Account</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="card recent-txns-card">
+                    <div class="card-header">
+                        <h2 class="card-title">Recent Transactions</h2>
+                        <button class="link-btn" id="view-all-txns">View All →</button>
+                    </div>
+                    <div class="recent-txns-list" id="recent-txns-list">
+                        <div class="empty-state">
+                            <svg width="48" height="48" viewBox="0 0 48 48" fill="none"><rect x="6" y="10" width="36" height="28" rx="4" stroke="currentColor" stroke-width="2" opacity="0.3"/><path d="M14 22H34M14 28H28M14 34H32" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity="0.3"/></svg>
+                            <p>No transactions yet</p>
+                            <span>Create an account to get started</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Account Cards Preview -->
+            <div class="card accounts-preview-card">
+                <div class="card-header">
+                    <h2 class="card-title">Your Accounts</h2>
+                    <button class="link-btn" id="view-all-accounts">Manage →</button>
+                </div>
+                <div class="accounts-carousel" id="accounts-carousel">
+                    <div class="empty-state">
+                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none"><rect x="4" y="12" width="40" height="24" rx="4" stroke="currentColor" stroke-width="2" opacity="0.3"/><path d="M4 20H44" stroke="currentColor" stroke-width="2" opacity="0.3"/></svg>
+                        <p>No accounts created</p>
+                        <span>Click "New Account" to create one</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── VIEW: Accounts ───────────────────────────────────────────── -->
+        <section class="view" id="view-accounts">
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">Create New Account</h2>
+                </div>
+                <form class="form-grid" id="create-account-form">
+                    <div class="form-group">
+                        <label for="holder-name">Account Holder Name</label>
+                        <input type="text" id="holder-name" placeholder="e.g., Salman Khan" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="account-type">Account Type</label>
+                        <select id="account-type">
+                            <option value="savings">Savings Account</option>
+                            <option value="current">Current Account</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="initial-deposit">Initial Deposit (₹)</label>
+                        <input type="number" id="initial-deposit" placeholder="e.g., 10000" min="0" step="0.01" required>
+                    </div>
+                    <div class="form-group form-submit">
+                        <button type="submit" class="btn btn-primary" id="btn-create-account">
+                            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="7" stroke="currentColor" stroke-width="1.5"/><path d="M9 6V12M6 9H12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                            Create Account
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">All Accounts</h2>
+                    <span class="badge" id="total-accounts-badge">0</span>
+                </div>
+                <div class="accounts-table-wrapper" id="accounts-table-wrapper">
+                    <div class="empty-state">
+                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none"><rect x="4" y="12" width="40" height="24" rx="4" stroke="currentColor" stroke-width="2" opacity="0.3"/><path d="M4 20H44" stroke="currentColor" stroke-width="2" opacity="0.3"/></svg>
+                        <p>No accounts yet</p>
+                        <span>Create your first account above</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── VIEW: Transactions ───────────────────────────────────────── -->
+        <section class="view" id="view-transactions">
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">Deposit / Withdraw</h2>
+                </div>
+                <form class="form-grid" id="txn-form">
+                    <div class="form-group">
+                        <label for="txn-account">Account</label>
+                        <select id="txn-account">
+                            <option value="">Select an account…</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="txn-type">Transaction Type</label>
+                        <select id="txn-type">
+                            <option value="deposit">Deposit</option>
+                            <option value="withdraw">Withdraw</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="txn-amount">Amount (₹)</label>
+                        <input type="number" id="txn-amount" placeholder="e.g., 5000" min="0.01" step="0.01" required>
+                    </div>
+                    <div class="form-group form-submit">
+                        <button type="submit" class="btn btn-primary" id="btn-submit-txn">
+                            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M2 16L16 2M16 2H6M16 2V12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                            Execute
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">Transaction History</h2>
+                    <div class="filter-group">
+                        <select id="txn-filter-account" class="filter-select">
+                            <option value="all">All Accounts</option>
+                        </select>
+                        <select id="txn-filter-type" class="filter-select">
+                            <option value="all">All Types</option>
+                            <option value="DEPOSIT">Deposit</option>
+                            <option value="WITHDRAW">Withdraw</option>
+                            <option value="TRANSFER-IN">Transfer In</option>
+                            <option value="TRANSFER-OUT">Transfer Out</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="txn-list" id="txn-history-list">
+                    <div class="empty-state">
+                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none"><path d="M14 22H34M14 28H28M14 34H32" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity="0.3"/></svg>
+                        <p>No transactions found</p>
+                        <span>Perform a deposit or withdrawal to see history</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── VIEW: Transfer ───────────────────────────────────────────── -->
+        <section class="view" id="view-transfer">
+            <div class="card transfer-card">
+                <div class="card-header">
+                    <h2 class="card-title">Fund Transfer</h2>
+                </div>
+                <form class="transfer-form" id="transfer-form">
+                    <div class="transfer-visual">
+                        <div class="transfer-account-box">
+                            <label>From Account</label>
+                            <select id="transfer-from">
+                                <option value="">Select source…</option>
+                            </select>
+                            <span class="transfer-balance" id="transfer-from-balance">—</span>
+                        </div>
+                        <div class="transfer-arrow">
+                            <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><path d="M8 16H24M24 16L19 11M24 16L19 21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </div>
+                        <div class="transfer-account-box">
+                            <label>To Account</label>
+                            <select id="transfer-to">
+                                <option value="">Select destination…</option>
+                            </select>
+                            <span class="transfer-balance" id="transfer-to-balance">—</span>
+                        </div>
+                    </div>
+                    <div class="form-group transfer-amount-group">
+                        <label for="transfer-amount">Transfer Amount (₹)</label>
+                        <input type="number" id="transfer-amount" placeholder="e.g., 1500" min="0.01" step="0.01" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-full" id="btn-transfer">
+                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 7L15 7M15 7L11 3M15 7L11 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M15 12L3 12M3 12L7 8M3 12L7 16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        Transfer Funds
+                    </button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- ── Toast Notifications ──────────────────────────────────────────── -->
+    <div class="toast-container" id="toast-container"></div>
+
+    <!-- ── Modal Overlay ────────────────────────────────────────────────── -->
+    <div class="modal-overlay" id="modal-overlay">
+        <div class="modal" id="modal">
+            <button class="modal-close" id="modal-close">&times;</button>
+            <div class="modal-body" id="modal-body"></div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
